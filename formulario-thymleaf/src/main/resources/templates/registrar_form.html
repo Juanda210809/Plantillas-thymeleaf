@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Frormulario de regosro</title>
+</head>
+<body>
+
+	<div align="center">
+
+		<h1>Formulario de registro</h1>
+		<form th:action="@{/registrar}" method="post" th:object="${user}">
+			<div>
+				<label> Nomrbe: </label> <input type="text" th:field="{*nombre}">
+				<br />
+
+			</div>
+			<div>
+				<label> email: </label> <input type="email" th:field="{*email}">
+				<br />
+
+			</div>
+			<div>
+				<label> Password </label> <input type="password"
+					th:field="{*password}"> <br />
+
+			</div>
+			<div>
+				<label>Fecha Nacimiento: </label> <input type="fechaNacimiento"
+					th:field="{*fechaNacimiento}"> <br />
+
+			</div>
+
+			<div>
+				<label>Genero: </label> <input type="radio" th:field="{*genero}"
+					value="Masculino"> Masculino <label>Genero: </label> <input
+					type="radio" th:field="{*genero}" value="Femenino">
+				Femenino <br />
+
+			</div>
+
+			<div>
+				<label>Profeiones: </label> <input type="radio" th:field="{*genero}"
+					value="Masculino"> Masculino <select
+					th:field="*{profesiones}">
+					<option th:each="p : ${profesiones}" th:value="${p}" th:text="${p}">
+				</select>
+
+			</div>
+
+			<div>
+				<label>Matrimonio </label> <input type="checkbox"
+					th:field="{*matrimonio}" />
+			</div>
+			<div>
+				<label>Ingreso Anual</label> <input type="text"
+					th:field="{*ingreso}" />
+			</div>
+			<div>
+				<div></div>
+				<div><button type="submit">Registrar</button></div>
+				<div></div>
+			
+			</div>
+		</form>
+
+	</div>
+
+</body>
+</html>
