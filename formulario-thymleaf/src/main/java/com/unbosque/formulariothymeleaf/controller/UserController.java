@@ -11,19 +11,23 @@ import com.unbosque.formulariothymeleaf.model.User;
 
 @Controller
 public class UserController {
-  
 
 	@GetMapping("/registrar")
-
 	public String mostrarFormulario(Model model) {
 
 		User user = new User();
 		model.addAttribute("user", user);
-		
-	    List<String> profesiones = Arrays.asList("Programador, Enermera,Proesor");
-	    model.addAttribute("profesiones", profesiones);
-	    
-	    return "registrar_form";
+
+		List<String> profesiones = Arrays.asList("Programador", "Enermera", "Proesor");
+		model.addAttribute("profesiones", profesiones);
+
+		return "registrar_form";
 
 	}
+
+	public String submitFormulario(User user) {
+		System.out.println(user.toString());
+		return "registro-seccess";
+	}
+
 }

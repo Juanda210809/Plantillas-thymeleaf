@@ -1,70 +1,138 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Frormulario de regosro</title>
+    <meta charset="UTF-8">
+    <title>Formulario de registro</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #6a5acd;
+            outline: none;
+        }
+
+        .radio-group, .checkbox-group {
+            margin-top: 8px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            background-color: #6a5acd;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #5b4bc4;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 15px;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
 
-	<div align="center">
+<div class="form-container">
+    <h1>Formulario de Registro</h1>
 
-		<h1>Formulario de registro</h1>
-		<form th:action="@{/registrar}" method="post" th:object="${user}">
-			<div>
-				<label> Nomrbe: </label> <input type="text" th:field="{*nombre}">
-				<br />
+    <form th:action="@{/registrar}" method="post" th:object="${user}">
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}" />
 
-			</div>
-			<div>
-				<label> email: </label> <input type="email" th:field="{*email}">
-				<br />
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" />
 
-			</div>
-			<div>
-				<label> Password </label> <input type="password"
-					th:field="{*password}"> <br />
+        <label>Password:</label>
+        <input type="password" th:field="*{password}" />
 
-			</div>
-			<div>
-				<label>Fecha Nacimiento: </label> <input type="fechaNacimiento"
-					th:field="{*fechaNacimiento}"> <br />
+        <label>Fecha de nacimiento:</label>
+        <input type="date" th:field="*{fechaNacimiento}" />
 
-			</div>
+        <label>Género:</label>
+        <div class="radio-group">
+            <input type="radio" th:field="*{genero}" value="Masculino"> Masculino
+            <input type="radio" th:field="*{genero}" value="Femenino"> Femenino
+        </div>
 
-			<div>
-				<label>Genero: </label> <input type="radio" th:field="{*genero}"
-					value="Masculino"> Masculino <label>Genero: </label> <input
-					type="radio" th:field="{*genero}" value="Femenino">
-				Femenino <br />
+        <label>Profesión:</label>
+        <select th:field="*{profesion}">
+            <option th:each="p : ${profesiones}" th:value="${p}" th:text="${p}"></option>
+        </select>
 
-			</div>
+        <label>Matrimonio:</label>
+        <div class="checkbox-group">
+            <input type="checkbox" th:field="*{matrimonio}" /> Casado/a
+        </div>
 
-			<div>
-				<label>Profeiones: </label> <input type="radio" th:field="{*genero}"
-					value="Masculino"> Masculino <select
-					th:field="*{profesiones}">
-					<option th:each="p : ${profesiones}" th:value="${p}" th:text="${p}">
-				</select>
+        <label>Ingreso anual:</label>
+        <input type="text" th:field="*{ingreso}" />
 
-			</div>
+        <button type="submit">Registrar</button>
+    </form>
 
-			<div>
-				<label>Matrimonio </label> <input type="checkbox"
-					th:field="{*matrimonio}" />
-			</div>
-			<div>
-				<label>Ingreso Anual</label> <input type="text"
-					th:field="{*ingreso}" />
-			</div>
-			<div>
-				<div></div>
-				<div><button type="submit">Registrar</button></div>
-				<div></div>
-			
-			</div>
-		</form>
-
-	</div>
+    <div class="footer">
+        © 2025 Universidad El Bosque
+    </div>
+</div>
 
 </body>
 </html>
