@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Registro con éxito</title>
+<style>
+    /* Fondo y tipografía */
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f4f6f8;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Contenedor centrado */
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        text-align: left;
+    }
+
+    /* Título */
+    h2 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 30px;
+    }
+
+    /* Lista de datos */
+    .user-info {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        row-gap: 15px;
+        column-gap: 10px;
+    }
+
+    .user-info span.label {
+        font-weight: bold;
+        color: #34495e;
+    }
+
+    .user-info span.value {
+        color: #2c3e50;
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+        .user-info {
+            grid-template-columns: 1fr;
+        }
+        .user-info span.label {
+            margin-top: 10px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Registro con éxito</h2>
+    <div class="user-info">
+        <span class="label">Nombre:</span>
+        <span class="value" th:text="${user.nombre}"></span>
+
+        <span class="label">Email:</span>
+        <span class="value" th:text="${user.email}"></span>
+
+        <span class="label">Password:</span>
+        <span class="value" th:text="${user.password}"></span>
+
+        <span class="label">Profesión:</span>
+        <span class="value" th:text="${user.profesion}"></span>
+
+        <span class="label">Ingreso:</span>
+        <span class="value" th:text="${user.ingreso}"></span>
+
+        <span class="label">Nota:</span>
+        <span class="value" th:text="${user.nota}"></span>
+    </div>
+</div>
+
+</body>
+</html>

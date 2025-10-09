@@ -1,138 +1,174 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Formulario de registro</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
-            height: 100vh;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+<meta charset="UTF-8">
+<title>Formulario de registro</title>
+<style>
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+	height: 100vh;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
-        .form-container {
-            background-color: #fff;
-            padding: 30px 40px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            width: 400px;
-            animation: fadeIn 0.6s ease-in-out;
-        }
+.form-container {
+	background-color: #fff;
+	padding: 30px 40px;
+	border-radius: 15px;
+	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+	width: 400px;
+	animation: fadeIn 0.6s ease-in-out;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+@keyframes fadeIn {from { opacity:0;
+	transform: translateY(-15px);
+}
 
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 25px;
-        }
+to {
+	opacity: 1;
+	transform: translateY(0);
+}
 
-        label {
-            display: block;
-            margin-top: 10px;
-            color: #333;
-            font-weight: bold;
-        }
+}
+h1 {
+	text-align: center;
+	color: #333;
+	margin-bottom: 25px;
+}
 
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        input[type="date"],
-        select {
-            width: 100%;
-            padding: 8px 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            margin-top: 5px;
-            transition: border-color 0.3s;
-        }
+label {
+	display: block;
+	margin-top: 10px;
+	color: #333;
+	font-weight: bold;
+}
 
-        input:focus, select:focus {
-            border-color: #6a5acd;
-            outline: none;
-        }
+input[type="text"], input[type="email"], input[type="password"], input[type="date"],
+	select {
+	width: 100%;
+	padding: 8px 10px;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	margin-top: 5px;
+	transition: border-color 0.3s;
+}
 
-        .radio-group, .checkbox-group {
-            margin-top: 8px;
-        }
+input:focus, select:focus {
+	border-color: #6a5acd;
+	outline: none;
+}
 
-        button {
-            margin-top: 20px;
-            width: 100%;
-            background-color: #6a5acd;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+.radio-group, .checkbox-group {
+	margin-top: 8px;
+}
 
-        button:hover {
-            background-color: #5b4bc4;
-        }
+button {
+	margin-top: 20px;
+	width: 100%;
+	background-color: #6a5acd;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	padding: 10px;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
 
-        .footer {
-            text-align: center;
-            font-size: 12px;
-            margin-top: 15px;
-            color: #666;
-        }
-    </style>
+button:hover {
+	background-color: #5b4bc4;
+}
+
+.footer {
+	text-align: center;
+	font-size: 12px;
+	margin-top: 15px;
+	color: #666;
+}
+</style>
 </head>
 <body>
 
-<div class="form-container">
-    <h1>Formulario de Registro</h1>
+	<div class="form-container">
+		<h1>Formulario de Registro</h1>
 
-    <form th:action="@{/registrar}" method="post" th:object="${user}">
-        <label>Nombre:</label>
-        <input type="text" th:field="*{nombre}" />
+		<form th:action="@{/registrar}" method="post" th:object="${user}">
+			<div>
+				<label>Nombre:</label> <input type="text" th:field="*{nombre}" />
+				<samp th:if="${#fields.hasErrors('nombre')}" th:error="*{nombre}">Error
+					de nombre</samp>
+			</div>
 
-        <label>Email:</label>
-        <input type="email" th:field="*{email}" />
+			<div>
+				<label>Email:</label> <input type="email" th:field="*{email}" />
+				<samp th:if="${#fields.hasErrors('email')}" th:error="*{email}">Error
+					de email</samp>
+			</div>
 
-        <label>Password:</label>
-        <input type="password" th:field="*{password}" />
+			<div>
+				<label>Password:</label> <input type="password"
+					th:field="*{password}" />
+				<samp th:if="${#fields.hasErrors('password')}"
+					th:error="*{password}">Error de password</samp>
+			</div>
 
-        <label>Fecha de nacimiento:</label>
-        <input type="date" th:field="*{fechaNacimiento}" />
+			<div>
+				<label>Fecha de nacimiento:</label> <input type="date"
+					th:field="*{fechaNacimiento}" />
+				<samp th:if="${#fields.hasErrors('fechaNacimiento')}"
+					th:error="*{fechaNacimiento}">Error de fecha de nacimiento</samp>
+			</div>
 
-        <label>Género:</label>
-        <div class="radio-group">
-            <input type="radio" th:field="*{genero}" value="Masculino"> Masculino
-            <input type="radio" th:field="*{genero}" value="Femenino"> Femenino
-        </div>
 
-        <label>Profesión:</label>
-        <select th:field="*{profesion}">
-            <option th:each="p : ${profesiones}" th:value="${p}" th:text="${p}"></option>
-        </select>
 
-        <label>Matrimonio:</label>
-        <div class="checkbox-group">
-            <input type="checkbox" th:field="*{matrimonio}" /> Casado/a
-        </div>
+			<div class="radio-group">
+				<label>Genero: </label> <input type="radio" th:field="*{genero}"
+					value="Masculino"> Masculino <input type="radio"
+					th:field="*{genero}" value="Femenino"> Femenino
+				<samp th:if="${#fields.hasErrors('genero')}" th:error="*{genero}">Error
+					de genero</samp>
+			</div>
 
-        <label>Ingreso anual:</label>
-        <input type="text" th:field="*{ingreso}" />
+			<div>
+				<label>Profesión:</label> <select th:field="*{profesion}">
+					<option th:each="p : ${profesiones}" th:value="${p}" th:text="${p}"></option>
+				</select>
+				<samp th:if="${#fields.hasErrors('profesion')}"
+					th:error="*{profesion}">Error de profesion</samp>
+			</div>
 
-        <button type="submit">Registrar</button>
-    </form>
+			<label>Matrimonio:</label>
+			<div class="checkbox-group">
+				<input type="checkbox" th:field="*{matrimonio}" /> Casado/a
 
-    <div class="footer">
-        © 2025 Universidad El Bosque
-    </div>
-</div>
+				<samp th:if="${#fields.hasErrors('matrimonio')}" th:error="*{matrimonio}">Error de matrimonio</samp>
+			</div>
+
+			<div>
+				<label>Ingreso anual:</label> <input type="text"
+					th:field="*{ingreso}" />
+				<samp th:if="${#fields.hasErrors('ingreso')}" th:error="*{ingreso}">Error
+					de ingre</samp>
+			</div>
+
+
+			<div>
+				<label>Nota:</label>
+				<textarea th:field="*{nota}"></textarea>
+				<samp th:if="${#fields.hasErrors('nota')}" th:error="*{nota}">Error
+					de nota</samp>
+			</div>
+
+
+			<button type="submit">Registrar</button>
+		</form>
+
+		<div class="footer">© 2025 Universidad El Bosque</div>
+	</div>
 
 </body>
 </html>
